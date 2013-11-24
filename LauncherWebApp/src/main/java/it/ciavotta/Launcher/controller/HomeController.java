@@ -1,4 +1,4 @@
-package it.ciavotta.Launcher;
+package it.ciavotta.Launcher.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping(value="/")
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -22,8 +23,8 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	@RequestMapping(value = "/data", method = RequestMethod.GET)
+	public String homeTime(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -35,5 +36,12 @@ public class HomeController {
 		
 		return "home";
 	}
-	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Locale locale, Model model) {
+		return "login";
+	}	
+	@RequestMapping
+	public String home(Locale locale, Model model){
+		return "home";
+	}
 }

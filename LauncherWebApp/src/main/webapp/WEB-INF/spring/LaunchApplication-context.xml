@@ -28,33 +28,32 @@
             http://www.springframework.org/schema/jms/spring-jms-2.5.xsd">
 
   <context:annotation-config />
-  <context:component-scan base-package="it.ciavotta.launcher" />
+  <context:component-scan base-package="it.ciavotta.Launcher" />
   <tx:annotation-driven />
 
   <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
       <property name="dataSource" ref="dataSource" />
-      <property name="packagesToScan" value="it.ciavotta.laucher" />
+      <property name="packagesToScan" value="it.ciavotta.Launcher.domain" />
       <property name="jpaVendorAdapter">
          <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
       </property>
       <property name="jpaProperties">
          <props>
-            <prop key="hibernate.hbm2ddl.auto">create</prop>
+            <prop key="hibernate.hbm2ddl.auto">validate</prop>
             <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
          </props>
       </property>
    </bean>
-
-   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="com.mysql.jdbc.Driver" />
       <property name="url" value="jdbc:mysql://localhost:3306/LauncherDB" />
       <property name="username" value="root" />
       <property name="password" value="franceschelli" />
    </bean>
-   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+  <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
       <property name="entityManagerFactory" ref="myEmf" />
    </bean>
-   <tx:annotation-driven />
-   <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+  <tx:annotation-driven />
+  <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 </beans>
