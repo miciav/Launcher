@@ -4,6 +4,8 @@
 package it.ciavotta.Launcher.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 /**
@@ -19,6 +21,9 @@ public class User {
 	private String password;
 	
 	private String email;
+	
+	@Enumerated(EnumType.STRING)
+	private UserType type;
 	
 	/**
 	 * @param args
