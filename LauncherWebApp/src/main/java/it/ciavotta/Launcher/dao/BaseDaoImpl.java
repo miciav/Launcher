@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author michele ciavotta
  *
  */
-@Repository(value= "baseDao")
+@Repository(value ="baseDao")
 @Transactional
 public class BaseDaoImpl implements BaseDao {
 

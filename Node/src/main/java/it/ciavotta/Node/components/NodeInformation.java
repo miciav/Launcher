@@ -1,22 +1,41 @@
-package it.ciavotta.Launcher.messages;
+package it.ciavotta.Node.components;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class NodeInformation {
 	
 	private String nodeIP; 
 
+	@Value("${server.port}")
 	private String port;
 	
 	private String state;
 	
+	@Value("${os.name}")
 	private String os;
 	
+	@Value("${os.arch}")
 	private String osArch;
 	
+	@Value("${os.version}")
 	private String osVersion;
 	
+	public NodeInformation(){
+		
+		try {
+			InetAddress IP = InetAddress.getLocalHost();
+			this.nodeIP = IP.getHostAddress();
+			this.state = "OK";
+		} catch (UnknownHostException e) {
+			this.state = "ERROR";
+		}
+	}
+
 	/**
 	 * @return the ipAddress
 	 */
@@ -60,17 +79,17 @@ public class NodeInformation {
 	}
 
 	/**
-	 * @return the os
+	 * @return the operatingSystem
 	 */
-	public String getOs() {
+	public String getos() {
 		return os;
 	}
 
 	/**
-	 * @param os the os to set
+	 * @param operatingSystem the operatingSystem to set
 	 */
-	public void setOs(String os) {
-		this.os = os;
+	public void setos(String operatingSystem) {
+		os = operatingSystem;
 	}
 
 	/**
@@ -87,18 +106,5 @@ public class NodeInformation {
 		this.osArch = osArch;
 	}
 
-	/**
-	 * @return the osVersion
-	 */
-	public String getOsVersion() {
-		return osVersion;
-	}
-
-	/**
-	 * @param osVersion the osVersion to set
-	 */
-	public void setOsVersion(String osVersion) {
-		this.osVersion = osVersion;
-	}
 	
 }

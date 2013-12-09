@@ -29,6 +29,10 @@ public class Node {
 	private String port;
 	
 	private String operatingSystem;
+	
+	private String architecture;
+	
+	private String osVersion;
 	 
 	@Enumerated(EnumType.STRING)
 	private NodeState state;
@@ -109,6 +113,34 @@ public class Node {
 	 */
 	public void setOperatingSystem(String operatingSystem) {
 		this.operatingSystem = operatingSystem;
+	}
+
+	/**
+	 * @return the architecture
+	 */
+	public String getArchitecture() {
+		return architecture;
+	}
+
+	/**
+	 * @param architecture the architecture to set
+	 */
+	public void setArchitecture(String architecture) {
+		this.architecture = architecture;
+	}
+
+	/**
+	 * @return the osVersion
+	 */
+	public String getOsVersion() {
+		return osVersion;
+	}
+
+	/**
+	 * @param osVersion the osVersion to set
+	 */
+	public void setOsVersion(String osVersion) {
+		this.osVersion = osVersion;
 	}
 	
 	
