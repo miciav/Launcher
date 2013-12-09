@@ -1,5 +1,8 @@
-package it.ciavotta.Node.domain;
+package it.ciavotta.Launcher.messages;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NodeInformation {
 	
 	private String nodeIP; 
@@ -8,13 +11,8 @@ public class NodeInformation {
 	
 	private String state;
 	
-	private String OperatingSystem = "MacOSX";
+	private String OperatingSystem;
 	
-	public NodeInformation(String ipAddress, String port, String state) {
-	        this.setIpAddress(ipAddress);
-	        this.setPort(port);
-	        this.setState(state);
-	    }
 
 	/**
 	 * @return the ipAddress
