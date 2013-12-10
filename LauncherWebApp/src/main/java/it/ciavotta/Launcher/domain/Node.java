@@ -6,8 +6,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NaturalId;
 
 
 /*
@@ -16,16 +18,22 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "Node")
 public class Node {
 
-	@Id
-	@GenericGenerator(name="generator", strategy="increment")
-    @GeneratedValue(generator="generator")
-	@Column(nullable = false)
+	
+	
+	//@Column(nullable = false)
 	private String nodeId;
+	
+	@Id
+//	@GeneratedValue
+	private String id;
 	
 	private String hashConnection;
 	
+	@NaturalId
+//	@Column(nullable = false)
 	private String nodeIP;
-	
+	@NaturalId
+//	@Column(nullable = false)
 	private String port;
 	
 	private String operatingSystem;
@@ -33,7 +41,15 @@ public class Node {
 	private String architecture;
 	
 	private String osVersion;
-	 
+
+	
+	@PrePersist
+	private void createId(){
+		this.id = this.nodeIP+this.port;
+		
+	}
+	
+	
 	@Enumerated(EnumType.STRING)
 	private NodeState state;
 

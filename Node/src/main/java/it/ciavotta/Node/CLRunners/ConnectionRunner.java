@@ -31,6 +31,10 @@ public class ConnectionRunner implements CommandLineRunner {
 			
 			System.out.println(status.getStatus());
 			
+			if (status.getMessage().equals("Connected") && status.getConnectionId() != null) {
+				nodeInfo.setNodeID(status.getConnectionId());
+			}
+			
 			
 		} catch (Exception e) {
 			// TODO: handle exception

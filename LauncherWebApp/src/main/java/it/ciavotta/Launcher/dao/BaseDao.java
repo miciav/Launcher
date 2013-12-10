@@ -16,4 +16,7 @@ public interface BaseDao {
 	public void refresh(Object object);
 	
 	public <T> List<T> getAll(Class<T> clazz);
+	
+	public boolean contains(Object object);
+	
 }

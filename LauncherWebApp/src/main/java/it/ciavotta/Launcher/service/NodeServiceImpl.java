@@ -26,4 +26,10 @@ public class NodeServiceImpl implements NodeService {
 		return baseDao.getAll(Node.class);
 	}
 
+	@Override
+	public boolean contains(Node node) {
+		return baseDao.contains(node);
+	}
+
+	
 }

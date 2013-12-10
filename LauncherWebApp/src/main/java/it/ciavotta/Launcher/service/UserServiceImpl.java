@@ -26,4 +26,10 @@ public class UserServiceImpl implements UserService {
 		return baseDao.getAll(User.class);
 	}
 
+	@Override
+	public boolean contains(User user) {
+		
+		return baseDao.contains(user);
+	}
+
 }

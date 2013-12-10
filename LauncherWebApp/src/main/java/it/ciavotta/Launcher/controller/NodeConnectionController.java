@@ -2,7 +2,9 @@ package it.ciavotta.Launcher.controller;
 
 
 
-import it.ciavotta.Launcher.component.ServerStatus;
+import java.util.UUID;
+
+import it.ciavotta.Launcher.messages.ServerStatus;
 import it.ciavotta.Launcher.domain.Node;
 import it.ciavotta.Launcher.domain.NodeState;
 import it.ciavotta.Launcher.messages.NodeInformation;
@@ -30,9 +32,20 @@ public class NodeConnectionController {
 		
 			Node node = convertNodeInfo(nodeInfo);
 			try {
-				nodeService.persist(node);
+				if ( !nodeService.contains(node)){
+					node.setNodeId( UUID.randomUUID().toString()); // adding connection id
+					nodeService.persist(node);
+					serverStatus.setMessage("Connected");
+					serverStatus.setConnectionId(node.getNodeId());
+				}
+				else{
+					// not returning the id 
+					serverStatus.setMessage("Connected");
+				}
+					
 			} catch (Exception e) {
 				serverStatus.setStatus("ERROR");
+				serverStatus.setMessage("Not Connected");
 			}
 			
 			System.out.println(nodeInfo.getPort());
@@ -44,13 +57,17 @@ public class NodeConnectionController {
 		node.setNodeIP(nodeInfo.getIpAddress());
 		node.setOperatingSystem(nodeInfo.getOs());
 		node.setArchitecture(nodeInfo.getOsArch());
+		node.setPort(nodeInfo.getPort());
+		
 		node.setOsVersion(nodeInfo.getOsVersion());
-		if (nodeInfo.getState() == "OK") {
+		
+		if (nodeInfo.getState().equals("OK")) {
 			node.setState(NodeState.OK);
 		}
-		else if (nodeInfo.getState() =="ERROR") {
+		else if (nodeInfo.getState().equals("ERROR")) {
 			node.setState(NodeState.ERROR);
 		}
+		
 		return node;
 	}
 	

@@ -10,4 +10,5 @@ public interface UserService {
 	
 	public List<User> getAll();
 
+	public boolean contains(User user);
 }

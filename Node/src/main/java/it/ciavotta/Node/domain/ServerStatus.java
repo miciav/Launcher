@@ -7,6 +7,26 @@ public class ServerStatus {
 
 	private String status;
 
+	private String message;
+	
+	private String ConnectionId;
+	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getConnectionId() {
+		return ConnectionId;
+	}
+
+	public void setConnectionId(String connectionId) {
+		ConnectionId = connectionId;
+	}
+
 	/**
 	 * @return the status
 	 */

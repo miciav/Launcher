@@ -25,6 +25,9 @@ public class NodeInformation {
 	@Value("${os.version}")
 	private String osVersion;
 	
+	private String nodeID;
+
+
 	public NodeInformation(){
 		
 		try {
@@ -36,6 +39,13 @@ public class NodeInformation {
 		}
 	}
 
+	public String getOsVersion() {
+		return osVersion;
+	}
+
+	public void setOsVersion(String osVersion) {
+		this.osVersion = osVersion;
+	}
 	/**
 	 * @return the ipAddress
 	 */
@@ -104,6 +114,20 @@ public class NodeInformation {
 	 */
 	public void setOsArch(String osArch) {
 		this.osArch = osArch;
+	}
+
+	/**
+	 * @return the nodeID
+	 */
+	public String getNodeID() {
+		return nodeID;
+	}
+
+	/**
+	 * @param nodeID the nodeID to set
+	 */
+	public void setNodeID(String nodeID) {
+		this.nodeID = nodeID;
 	}
 
 	

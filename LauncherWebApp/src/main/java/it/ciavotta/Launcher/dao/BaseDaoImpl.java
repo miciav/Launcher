@@ -45,4 +45,10 @@ public class BaseDaoImpl implements BaseDao {
 		emanager.refresh(object);		
 	}
 
+	@Override
+	public boolean contains(Object object){
+		return emanager.contains(object);
+		
+	}
+	
 }
