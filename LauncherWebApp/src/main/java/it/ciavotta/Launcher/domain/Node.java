@@ -1,14 +1,11 @@
 package it.ciavotta.Launcher.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
 
 
@@ -26,9 +23,17 @@ public class Node {
 	@Id
 //	@GeneratedValue
 	private String id;
+
 	
-	private String hashConnection;
-	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
 	@NaturalId
 //	@Column(nullable = false)
 	private String nodeIP;
@@ -75,19 +80,6 @@ public class Node {
 		this.nodeId = nodeId;
 	}
 
-	/**
-	 * @return the hashConnection
-	 */
-	public String getHashConnection() {
-		return hashConnection;
-	}
-
-	/**
-	 * @param hashConnection the hashConnection to set
-	 */
-	public void setHashConnection(String hashConnection) {
-		this.hashConnection = hashConnection;
-	}
 
 	/**
 	 * @return the nodeIP

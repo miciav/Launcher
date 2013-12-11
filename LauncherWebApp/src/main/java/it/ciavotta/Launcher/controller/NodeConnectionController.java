@@ -32,7 +32,7 @@ public class NodeConnectionController {
 		
 			Node node = convertNodeInfo(nodeInfo);
 			try {
-				if ( !nodeService.contains(node)){
+				if ( nodeService.isContained(node)== null){
 					node.setNodeId( UUID.randomUUID().toString()); // adding connection id
 					nodeService.persist(node);
 					serverStatus.setMessage("Connected");
@@ -48,7 +48,6 @@ public class NodeConnectionController {
 				serverStatus.setMessage("Not Connected");
 			}
 			
-			System.out.println(nodeInfo.getPort());
 			return serverStatus;
 	    }
 	
@@ -58,8 +57,9 @@ public class NodeConnectionController {
 		node.setOperatingSystem(nodeInfo.getOs());
 		node.setArchitecture(nodeInfo.getOsArch());
 		node.setPort(nodeInfo.getPort());
-		
+		node.setId(nodeInfo.getId());
 		node.setOsVersion(nodeInfo.getOsVersion());
+		node.setNodeId(nodeInfo.getNodeID());
 		
 		if (nodeInfo.getState().equals("OK")) {
 			node.setState(NodeState.OK);

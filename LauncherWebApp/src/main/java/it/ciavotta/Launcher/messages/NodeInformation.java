@@ -5,6 +5,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NodeInformation {
 	
+	private String id;
+	
 	private String nodeIP; 
 
 	private String port;
@@ -16,6 +18,8 @@ public class NodeInformation {
 	private String osArch;
 	
 	private String osVersion;
+	
+	private String nodeID;
 	
 	/**
 	 * @return the ipAddress
@@ -99,6 +103,34 @@ public class NodeInformation {
 	 */
 	public void setOsVersion(String osVersion) {
 		this.osVersion = osVersion;
+	}
+
+	/**
+	 * @return the nodeID
+	 */
+	public String getNodeID() {
+		return nodeID;
+	}
+
+	/**
+	 * @param nodeID the nodeID to set
+	 */
+	public void setNodeID(String nodeID) {
+		this.nodeID = nodeID;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }

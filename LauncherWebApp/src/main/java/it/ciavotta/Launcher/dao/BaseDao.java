@@ -19,4 +19,5 @@ public interface BaseDao {
 	
 	public boolean contains(Object object);
 	
+	public <T> T isContained(Class<T> clazz, Object object);
 }

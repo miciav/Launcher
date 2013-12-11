@@ -27,12 +27,9 @@ public class ConnectionRunner implements CommandLineRunner {
 
 			ServerStatus status = conn.postForObject( nodeInfo, ServerStatus.class);
 			
-		//	ServerStatus status = rest.getForObject(url, ServerStatus.class);
-			
-			System.out.println(status.getStatus());
-			
 			if (status.getMessage().equals("Connected") && status.getConnectionId() != null) {
 				nodeInfo.setNodeID(status.getConnectionId());
+				
 			}
 			
 			

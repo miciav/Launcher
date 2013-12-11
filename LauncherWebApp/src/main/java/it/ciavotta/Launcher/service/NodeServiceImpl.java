@@ -31,5 +31,11 @@ public class NodeServiceImpl implements NodeService {
 		return baseDao.contains(node);
 	}
 
+	@Override
+	public Node isContained(Node node) {
+		
+		return baseDao.isContained(Node.class, node.getId());
+	}
+
 	
 }

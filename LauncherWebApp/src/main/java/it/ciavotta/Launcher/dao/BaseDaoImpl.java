@@ -50,5 +50,12 @@ public class BaseDaoImpl implements BaseDao {
 		return emanager.contains(object);
 		
 	}
+
+	@Override
+	public <T>  T isContained(Class<T> clazz, Object object) {
+		
+		return emanager.find(clazz, object);
+		
+	}
 	
 }

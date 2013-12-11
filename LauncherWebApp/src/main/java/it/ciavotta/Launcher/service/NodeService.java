@@ -11,4 +11,6 @@ public interface NodeService {
 	public List<Node> getAll();
 	
 	public boolean contains(Node node);
+	
+	public Node isContained(Node node);
 }
