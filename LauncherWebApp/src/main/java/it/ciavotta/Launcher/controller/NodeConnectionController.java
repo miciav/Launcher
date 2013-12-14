@@ -2,13 +2,13 @@ package it.ciavotta.Launcher.controller;
 
 
 
-import java.util.UUID;
-
-import it.ciavotta.Launcher.messages.ServerStatus;
 import it.ciavotta.Launcher.domain.Node;
 import it.ciavotta.Launcher.domain.NodeState;
 import it.ciavotta.Launcher.messages.NodeInformation;
-import it.ciavotta.Launcher.service.NodeService;
+import it.ciavotta.Launcher.messages.ServerStatus;
+import it.ciavotta.Launcher.repository.NodeRepository;
+
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,20 +21,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/Node")
 public class NodeConnectionController {
 
-	@Autowired
-	NodeService nodeService;
+//	@Autowired
+//	NodeService nodeService;
 	
 	@Autowired
 	ServerStatus serverStatus;
 	
+	@Autowired
+	NodeRepository repository;
+	
 	@RequestMapping(value ="/connect", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody ServerStatus connect(@RequestBody NodeInformation nodeInfo){
 		
+		
+			
 			Node node = convertNodeInfo(nodeInfo);
 			try {
-				if ( nodeService.isContained(node)== null){
+		//		if ( nodeService.isContained(node)== null){
+				if (!repository.exists(node.getId())){	
 					node.setNodeId( UUID.randomUUID().toString()); // adding connection id
-					nodeService.persist(node);
+					repository.save(node);
+	//				nodeService.persist(node);
 					serverStatus.setMessage("Connected");
 					serverStatus.setConnectionId(node.getNodeId());
 				}

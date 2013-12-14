@@ -29,6 +29,7 @@
 		<servlet-name>DispServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>

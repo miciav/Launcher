@@ -1,8 +1,7 @@
 package it.ciavotta.Launcher.controller;
 
 import it.ciavotta.Launcher.domain.User;
-import it.ciavotta.Launcher.service.UserService;
-
+import it.ciavotta.Launcher.repository.UserRepository;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -25,7 +24,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
-	private UserService userService;
+	private UserRepository userRepository;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -46,7 +45,7 @@ public class HomeController {
 		
 		user.setUsername("prova");
 		user.setPassword("prova");
-		userService.persist(user);
+		userRepository.save(user);
 	
 		return "home";
 	}
