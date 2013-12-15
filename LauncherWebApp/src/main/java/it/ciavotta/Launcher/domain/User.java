@@ -4,6 +4,7 @@
 package it.ciavotta.Launcher.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -47,7 +48,10 @@ public class User implements Serializable {
 	inverseJoinColumns = @JoinColumn(name="role_id"))
 	private List<Role> roles;
 	
-	public User(){}
+	public User(){
+		
+		this.roles = new ArrayList<Role>();
+	}
 	
 	
 

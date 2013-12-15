@@ -1,5 +1,6 @@
 package it.ciavotta.Launcher.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,7 +19,9 @@ public class Role {
 	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
 	
-	public Role(){}
+	public Role(){
+		this.users = new ArrayList<User>();
+	}
 
 	public Role(int id, String roleName, List<User> users) {
 		super();
