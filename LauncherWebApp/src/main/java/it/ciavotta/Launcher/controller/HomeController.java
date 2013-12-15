@@ -1,7 +1,9 @@
 package it.ciavotta.Launcher.controller;
 
+import it.ciavotta.Launcher.domain.Role;
 import it.ciavotta.Launcher.domain.User;
 import it.ciavotta.Launcher.repository.UserRepository;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -41,10 +43,12 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		User user = new User();
+		Role role = new Role();
+		role.setRoleName("USER");
+		user.getRoles().add(role);
+		user.setUsername("michele");
+		user.setPassword("michele");
 		
-		
-		user.setUsername("prova");
-		user.setPassword("prova");
 		userRepository.save(user);
 	
 		return "home";

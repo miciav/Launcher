@@ -37,11 +37,10 @@ public class NodeConnectionController {
 			
 			Node node = convertNodeInfo(nodeInfo);
 			try {
-		//		if ( nodeService.isContained(node)== null){
 				if (!repository.exists(node.getId())){	
 					node.setNodeId( UUID.randomUUID().toString()); // adding connection id
 					repository.save(node);
-	//				nodeService.persist(node);
+
 					serverStatus.setMessage("Connected");
 					serverStatus.setConnectionId(node.getNodeId());
 				}

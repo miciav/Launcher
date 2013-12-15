@@ -3,19 +3,35 @@
  */
 package it.ciavotta.Launcher.domain;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
 /**
  * @author michele ciavotta
  *
  */
 @Entity(name = "User")
-public class User {
+public class User implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private int Id;
+	
 	private String username;
 	
 	private String password;
@@ -23,15 +39,53 @@ public class User {
 	private String email;
 	
 	@Enumerated(EnumType.STRING)
-	private UserType type;
+	private UserStatus status;
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	@ManyToMany
+	@JoinTable(name="UsersAndRoles",
+	joinColumns = @JoinColumn(name="user_id"),
+	inverseJoinColumns = @JoinColumn(name="role_id"))
+	private List<Role> roles;
+	
+	public User(){}
+	
+	
 
+	public User(String username, String password, String email, UserStatus type,
+			List<Role> roles) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.status = type;
+		this.roles = roles;
 	}
+
+
+
+	public UserStatus getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(UserStatus type) {
+		this.status = type;
+	}
+
+
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+
 
 	/**
 	 * @return the username
@@ -74,5 +128,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 }

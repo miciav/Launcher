@@ -2,14 +2,10 @@
 charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="javax.servlet.jsp.tagext.TryCatchFinally"%>
 <%@page import="it.ciavotta.Launcher.domain.User"%>
-<%@page import="it.ciavotta.Launcher.dao.BaseDao"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@page import="org.springframework.web.context.WebApplicationContext"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-
-<jsp:useBean  id="user" class="it.ciavotta.Launcher.domain.User" scope="session"></jsp:useBean>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -57,14 +53,30 @@ charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 		<div class="extra2 container">
 			<div class="ebox1">
 				<div class="hexagon"><span class="icon icon-lightbulb"></span></div>
-				<sf:form commandname="post" action="check.jsp">
-				<p>Username:<input type="text" name="username" size="20" value="<%=user.getUsername() %>" /> </p>      
-				<br>
-				<p>Password:<input type="password" name="password" size="20" value=<%=user.getPassword()   %> /></p> 
-				<br>
-				<input type="submit" />
-				
-				</sf:form>
+				<form action="j_spring_security_check" method="post">
+					<table>
+						<tr>
+							<td>Username:</td>
+							<td>
+								<input type="text" name="j_username"/>
+							</td>
+						</tr>
+						<tr>
+							<td>Password:</td>
+							<td>
+								<input type="password" name="j_password"/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="right">
+								<input type="submit" value="Login"/>
+							</td>
+						</tr>
+					</table>
+				</form>
+				<font color="red">
+					<span>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</span>
+				</font>
 				<p>This is <strong>Plushiness</strong>, a free, fully standards-compliant CSS template designed by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attributions 3.0</a> license, so you are pretty much free to do whatever you want with it (even use it commercially) provided you keep the links in the footer intact. Aside from that, have fun with it :) </p>
 				<a href="#" class="button">Etiam posuere</a>
 			</div>		

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:security="http://www.springframework.org/schema/security"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+<!--
+  <security:global-method-security
+      pre-post-annotations="enabled"/> -->
+
+  <security:http security="none" pattern="/resources/**"/>
+  
+  <security:http use-expressions="true">
+    <security:intercept-url pattern="/" access="permitAll"/> <!-- This means that everybody is allowed to access to this URL -->
+    <security:intercept-url pattern="/login" access="permitAll"/> <!-- This means that everybody is allowed to access to this URL -->
+    <security:intercept-url pattern="/admin/*"  access="hasRole('ADMIN')"/> <!--  to access to the other urls the role must be ROLE_USER -->
+      <security:intercept-url pattern="/**"  access="isAuthenticated()"/> <!--  to access to the other urls the role must be ROLE_USER -->
+    <security:form-login login-page="/login"
+    	default-target-url="/index"
+        authentication-failure-url="/login"/>
+    <security:logout logout-success-url="/login"/>
+  </security:http>
+
+<!--   <security:authentication-manager alias="authenticationManager">  here I explicitly create a bean called authentication Manager -->
+<!--     <security:authentication-provider> -->
+<!--       <security:user-service> -->
+<!--         <security:user name="user" password="password" authorities="ROLE_USER"/> hard coded user -->
+<!--       </security:user-service> -->
+<!--     </security:authentication-provider> -->
+<!--   </security:authentication-manager> -->
+
+	<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService"/>
+	</bean>  
+	<bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+		<property name="providers">
+			<list>
+				<ref local = "daoAuthenticationProvider"/>
+			</list>
+		</property>
+	</bean>
+	
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="userDetailsService">
+			<security:password-encoder hash="plaintext"></security:password-encoder>
+		
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+<!--   <bean id="successHandler" -->
+<!--     class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler"/> -->
+<!--   <bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler"> -->
+<!--     <property name="permissionEvaluator"> -->
+<!--       <bean class="messages.security.MessagePermissionEvaluator"/> -->
+<!--     </property> -->
+<!--   </bean> -->
+</beans>
