@@ -13,6 +13,7 @@
   <security:http use-expressions="true">
     <security:intercept-url pattern="/" access="permitAll"/> <!-- This means that everybody is allowed to access to this URL -->
     <security:intercept-url pattern="/login" access="permitAll"/> <!-- This means that everybody is allowed to access to this URL -->
+    <security:intercept-url pattern="/registration" access="permitAll"/> <!-- This means that everybody is allowed to access to this URL -->
     <security:intercept-url pattern="/admin/*"  access="hasRole('ADMIN')"/> <!--  to access to the other urls the role must be ROLE_USER -->
       <security:intercept-url pattern="/**"  access="isAuthenticated()"/> <!--  to access to the other urls the role must be ROLE_USER -->
     <security:form-login login-page="/login"

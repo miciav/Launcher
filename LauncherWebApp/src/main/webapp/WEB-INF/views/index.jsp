@@ -42,9 +42,10 @@ Released   : 20131117
 			<ul>
 				<li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li>
 				<li><a href="login" accesskey="2" title="">Login</a></li>
-				<li><a href="#" accesskey="3" title="">About Us</a></li>
-				<li><a href="#" accesskey="4" title="">Careers</a></li>
-				<li><a href="#" accesskey="5" title="">Contact Us</a></li>
+				<li><a href="registration" accesskey="3" title="">Registration</a></li>
+				<li><a href="#" accesskey="4" title="">About Us</a></li>
+				<li><a href="#" accesskey="5" title="">Careers</a></li>
+				<li><a href="#" accesskey="6" title="">Contact Us</a></li>
 			</ul>
 		</div>
 </div>

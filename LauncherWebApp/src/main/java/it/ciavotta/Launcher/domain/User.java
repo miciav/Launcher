@@ -16,6 +16,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author michele ciavotta
@@ -33,12 +38,18 @@ public class User implements Serializable {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int Id;
 	
+	@NotNull
+	@Size(min = 4, max = 10)
 	private String username;
 	
+	@NotNull
+	@Size(min = 5, max = 10)	
 	private String password;
 	
+	@NotEmpty
+	@Email
 	private String email;
-	
+
 	@Enumerated(EnumType.STRING)
 	private UserStatus status;
 	

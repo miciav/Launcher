@@ -54,30 +54,45 @@ charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 		<div class="extra2 container">
 			<div class="ebox1">
 				<div class="hexagon"><span class="icon icon-lightbulb"></span></div>
-				<form action="j_spring_security_check" method="post">
+				<font color="red"><span>${errorMessage}</span></font>
+				<form action="registration" method="post" >
 					<table>
 						<tr>
 							<td>Username:</td>
 							<td>
-								<input type="text" name="j_username"/>
+								<input type="text" name="username" value="${user.username}" />
+							</td>
+							<td>
+							<font color="red"><span>${usernameMessage}</span></font>
 							</td>
 						</tr>
 						<tr>
 							<td>Password:</td>
 							<td>
-								<input type="password" name="j_password"/>
+								<input type="password" name="password" value="${user.password}"/> 
+							</td>
+							<td>
+							<font color="red"><span>${passwordMessage}</span></font>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" align="right">
-								<input type="submit" value="Login"/>
+							<td>Email:</td>
+							<td>
+								<input type="text" name="email" value="${user.email}"/>
+							</td>
+							<td>
+							<font color="red"><span>${emailMessage}</span></font>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" align="center">
+								<input class="button" type="submit" value="Login"/>
 							</td>
 						</tr>
 					</table>
 				</form>
-				<font color="red">
-					<span>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</span>
-				</font>
+				</div>
+				
 				<p>This is <strong>Plushiness</strong>, a free, fully standards-compliant CSS template designed by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attributions 3.0</a> license, so you are pretty much free to do whatever you want with it (even use it commercially) provided you keep the links in the footer intact. Aside from that, have fun with it :) </p>
 				<a href="#" class="button">Etiam posuere</a>
 			</div>		

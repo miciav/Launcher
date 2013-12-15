@@ -46,8 +46,8 @@ public class HomeController {
 		Role role = new Role();
 		role.setRoleName("USER");
 		user.getRoles().add(role);
-		user.setUsername("michele");
-		user.setPassword("michele");
+		user.setUsername("username");
+		user.setPassword("username");
 		
 		userRepository.save(user);
 	

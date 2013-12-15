@@ -26,16 +26,24 @@ public class LauncherWebAppInit implements InitializingBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		try {
-			Role role = new Role();
-//			role.setId(1);
-			role.setRoleName("ADMIN");
-			roleRepository.save(role);
+			Role roleAdmin = new Role();
+			roleAdmin.setRoleName("ADMIN");
+			roleRepository.save(roleAdmin);
+
+			Role roleUser = new Role();
+			roleUser.setRoleName("USER");
+			roleRepository.save(roleUser);
+			
 			User user = new User();
-			role.getUsers().add(user);
+			roleUser.getUsers().add(user);
+			roleAdmin.getUsers().add(user);
 			user.setUsername("admin");
 			user.setPassword("admin");
 			user.setStatus(UserStatus.ACTIVE);
-			user.getRoles().add(role);
+			user.setEmail("admin@mail.com");
+			user.getRoles().add(roleUser);
+	//		userRepository.save(user);
+			user.getRoles().add(roleAdmin);
 			userRepository.save(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
