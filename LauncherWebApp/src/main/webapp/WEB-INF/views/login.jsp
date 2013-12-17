@@ -27,7 +27,7 @@ charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <div id="wrapper">
 	<div id="featured-wrapper">
 	
-		<div class="extra2 container">
+		<div class="extra2 container2">
 			<div class="ebox1">
 				<div class="hexagon"><span class="icon icon-lightbulb"></span></div>
 				<form action="j_spring_security_check" method="post">
