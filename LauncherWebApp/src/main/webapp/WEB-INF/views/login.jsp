@@ -23,31 +23,7 @@ charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 </head>
 <body>
-<div id="header-wrapper">
-	<div id="header" class="container">
-		<div id="logo">
-			<span class="icon icon-group"></span>
-			<h1><a href="#">jLauncher</a></h1>
-			<span>Open-source experiments launcher application 
-			<a href="https://github.com/miciav/Launcher" rel="nofollow">jLauncher
-			</a>
-			</span> 
-			</div>
-		</div>
-		<div id="triangle-up"></div>
-	</div>
-<div id="menu-wrapper">
-		<div id="menu">
-			<ul>
-				<li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li>
-				<li><a href="login" accesskey="2" title="">Login</a></li>
-				<li><a href="registration" accesskey="3" title="">Registration</a></li>
-				<li><a href="#" accesskey="4" title="">About Us</a></li>
-				<li><a href="#" accesskey="5" title="">Careers</a></li>
-				<li><a href="#" accesskey="6" title="">Contact Us</a></li>
-			</ul>
-		</div>
-</div>
+<jsp:include page="header.jsp" />
 <div id="wrapper">
 	<div id="featured-wrapper">
 	

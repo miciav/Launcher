@@ -55,8 +55,10 @@ a:hover
 
 .container
 {
-	margin: 0px auto;
+/* 	margin: 0px auto; */
 	width: 1200px;
+	height: 100px;
+	
 }
 
 /*********************************************************************************/
@@ -366,8 +368,10 @@ ul.contact li a.icon-rss:before
 	#header-wrapper
 	{
 		overflow: hidden;
-		padding: 5em 0em 0em 0em;
-		background: #FFC000 url(images/overlay.png) repeat;
+/* 		padding: 2em 0em 0em 0em; */
+		background: #FFC00D; 
+		/*url(images/overlay.png) repeat;*/
+/* 		height: 180px; */
 	}
 
 	#header
@@ -389,13 +393,13 @@ ul.contact li a.icon-rss:before
 
 	#logo
 	{
-		padding: 5em 0em;
+		padding: 1.5em 0em;
 		text-align: center;
 	}
 	
 	#logo h1
 	{
-		font-size: 3.5em;
+		font-size: 2.5em;
 	}
 	
 	#logo a
@@ -436,14 +440,14 @@ ul.contact li a.icon-rss:before
 
 	#menu
 	{
-		margin: 0px auto;
+ 		margin: 0px auto; 
 	}
 	
 	#menu ul
 	{
-		text-align: center;
+		text-align: left;
+		height: 1em;
 	}
-	
 	#menu li
 	{
 		display: inline-block;
@@ -452,8 +456,11 @@ ul.contact li a.icon-rss:before
 	#menu li a, #menu li span
 	{
 		display: inline-block;
-		margin-left: 0.50em;
-		padding: 2em 1.5em 1em 1.5em;
+		margin-left: 0.20em;
+		padding-bottom: 0.4em;
+		padding-top:0.4em;
+		padding-left:0em;
+		padding-right:0em;		
 		letter-spacing: 0.20em;
 		text-decoration: none;
 		font-size: 0.90em;
@@ -471,6 +478,10 @@ ul.contact li a.icon-rss:before
 	{
 		color: #FFF;
 	}
+	#menu table
+	{
+	}
+	
 
 /*********************************************************************************/
 /* Banner                                                                        */

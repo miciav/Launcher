@@ -1,15 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<!--
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-Name       : Plushiness 
-Description: A two-column, fixed-width design with dark color scheme.
-Version    : 1.0
-Released   : 20131117
-
--->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,29 +18,8 @@ Released   : 20131117
 
 </head>
 <body>
-<div id="header-wrapper">
-	<div id="header" class="container">
-		<div id="logo">
-			<span class="icon icon-group"></span>
-			<h1><a href="#">jLauncher</a></h1>
-			<span>Open-source experiments launcher application <a href="https://github.com/miciav/Launcher" rel="nofollow">jLauncher</a></span> 
-		</div>
-	</div>
-		<div id="triangle-up">
-		</div>
-</div>
-<div id="menu-wrapper">
-		<div id="menu">
-			<ul>
-				<li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li>
-				<li><a href="login" accesskey="2" title="">Login</a></li>
-				<li><a href="registration" accesskey="3" title="">Registration</a></li>
-				<li><a href="#" accesskey="4" title="">About Us</a></li>
-				<li><a href="#" accesskey="5" title="">Careers</a></li>
-				<li><a href="#" accesskey="6" title="">Contact Us</a></li>
-			</ul>
-		</div>
-</div>
+<jsp:include page="header.jsp" />
+
 <div id="wrapper">
 	<div id="featured-wrapper">
 	

@@ -19,7 +19,7 @@
     <security:form-login login-page="/login"
     	default-target-url="/index"
         authentication-failure-url="/login"/>
-    <security:logout logout-success-url="/login"/>
+    <security:logout logout-success-url="/"/>
   </security:http>
 
 <!--   <security:authentication-manager alias="authenticationManager">  here I explicitly create a bean called authentication Manager -->
