@@ -1,8 +1,10 @@
 package it.ciavotta.Launcher.components;
 
+import it.ciavotta.Launcher.domain.Experiment;
 import it.ciavotta.Launcher.domain.Role;
 import it.ciavotta.Launcher.domain.User;
 import it.ciavotta.Launcher.domain.UserStatus;
+import it.ciavotta.Launcher.repository.ExperimentRepository;
 import it.ciavotta.Launcher.repository.RoleRepository;
 import it.ciavotta.Launcher.repository.UserRepository;
 
@@ -18,6 +20,9 @@ public class LauncherWebAppInit implements InitializingBean {
 	
 	@Autowired
 	RoleRepository roleRepository;
+	
+	@Autowired
+	ExperimentRepository experimentRepository;
 	
 	public LauncherWebAppInit(){
 		
@@ -44,6 +49,11 @@ public class LauncherWebAppInit implements InitializingBean {
 			user.getRoles().add(roleUser);
 	//		userRepository.save(user);
 			user.getRoles().add(roleAdmin);
+			
+			Experiment experiment = new Experiment();
+			experiment.setName("fuffa");
+			experimentRepository.save(experiment);
+			user.getExperiments().add(experiment);
 			userRepository.save(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

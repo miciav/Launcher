@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -59,21 +60,27 @@ public class User implements Serializable {
 	inverseJoinColumns = @JoinColumn(name="role_id"))
 	private List<Role> roles;
 	
+	@OneToMany
+	private List<Experiment> experiments;
+	
 	public User(){
 		
 		this.roles = new ArrayList<Role>();
+		this.experiments = new ArrayList<Experiment>();
 	}
 	
 	
 
-	public User(String username, String password, String email, UserStatus type,
-			List<Role> roles) {
+	public User(int id, String username, String password, String email,
+			UserStatus status, List<Role> roles, List<Experiment> experiments) {
 		super();
+		Id = id;
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.status = type;
+		this.status = status;
 		this.roles = roles;
+		this.experiments = experiments;
 	}
 
 
@@ -142,6 +149,24 @@ public class User implements Serializable {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+
+	/**
+	 * @return the experiments
+	 */
+	public List<Experiment> getExperiments() {
+		return experiments;
+	}
+
+
+
+	/**
+	 * @param experiments the experiments to set
+	 */
+	public void setExperiments(List<Experiment> experiments) {
+		this.experiments = experiments;
 	}
 
 

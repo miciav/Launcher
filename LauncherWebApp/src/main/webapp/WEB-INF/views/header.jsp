@@ -11,11 +11,10 @@
 		<div id="menu">
 			<ul>
 				<li><span class="icon icon-group"></span></li>
-				<li class="current_page_item"><a href="#" accesskey="1"
-					title="">Homepage</a></li>
+				<li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li>
 				<li><a href="login" accesskey="2" title="">Login</a></li>
 				<li><a href="registration" accesskey="3" title="">Registration</a></li>
-				<li><a href="#" accesskey="4" title="">About Us</a></li>
+				<li><a href="fileUploadForm" accesskey="4" title="">New experiment</a></li>
 				<li><a href="#" accesskey="5" title="">Careers</a></li>
 				<li><a href="#" accesskey="6" title="">Contact Us</a></li>
 
