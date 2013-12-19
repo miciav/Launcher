@@ -25,11 +25,13 @@ h1, h2, h3
 
 p, ol, ul
 {
+	float:right;
 	margin-top: 0;
 }
 
 ol, ul
 {
+	float:right;
 	padding: 0;
 	list-style: none;
 }
@@ -115,6 +117,7 @@ a:hover
 
 	ul.style1
 {
+	float:right;
 	margin: 0;
 	padding: 0em 0em 0em 0em;
 	overflow: hidden;
@@ -443,26 +446,31 @@ ul.contact li a.icon-rss:before
 
 	#menu-wrapper
 	{
+		float: right;
 		background: #3D3D3D;
 	}
 
 	#menu
 	{
+		float: right;
  		margin: 0px auto; 
 	}
 	
 	#menu ul
 	{
-		text-align: left;
+		float: right;
+		text-align: right;
 		height: 1em;
 	}
 	#menu li
 	{
+		float: right;
 		display: inline-block;
 	}
 	
 	#menu li a, #menu li span
 	{
+		float:right;
 		display: inline-block;
 		margin-left: 0.20em;
 		padding-bottom: 0.4em;
@@ -523,7 +531,7 @@ ul.contact li a.icon-rss:before
 
 #banner .box-right
 {
-	float: right;
+	float: left;
 }
 
 #banner h2
