@@ -8,7 +8,11 @@ import it.ciavotta.Launcher.messages.NodeInformation;
 import it.ciavotta.Launcher.messages.ServerStatus;
 import it.ciavotta.Launcher.repository.NodeRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
+import javassist.expr.NewArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,9 +37,7 @@ public class NodeConnectionController {
 	@RequestMapping(value ="/connect", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody ServerStatus connect(@RequestBody NodeInformation nodeInfo){
 		
-		
-			
-			Node node = convertNodeInfo(nodeInfo);
+		Node node = convertNodeInfo(nodeInfo);
 			try {
 				if (!repository.exists(node.getId())){	
 					node.setNodeId( UUID.randomUUID().toString()); // adding connection id
@@ -56,6 +58,22 @@ public class NodeConnectionController {
 			
 			return serverStatus;
 	    }
+	
+	public @ResponseBody NodeInformation[] nodeList(@RequestBody NodeInformation nodeInfo){
+		
+		
+		Node node = convertNodeInfo(nodeInfo);
+		List<Node> list  = repository.findAllButThisNodeId(node.getNodeId());
+		
+		
+		NodeInformation[] listNodes = (NodeInformation[]) list.toArray();
+		
+		
+		
+		return listNodes;
+		
+		
+	}
 	
 	private Node convertNodeInfo(NodeInformation nodeInfo){
 		Node node = new Node();

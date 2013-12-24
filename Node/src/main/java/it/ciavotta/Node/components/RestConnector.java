@@ -3,6 +3,8 @@ package it.ciavotta.Node.components;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,7 +21,12 @@ public class RestConnector {
 	private String serviceName;
 	
 	private String restUrl ;
-	  
+	
+	@Value("${LauncherServer.login}")
+	private String login;
+	
+	@Value("${LauncherServer.password}")
+	private String password;
 	
 	private String restAPIName;
 	
@@ -27,13 +34,40 @@ public class RestConnector {
 	
 	public RestConnector(){
 		
-		  
-		  
-
-		  
-		  
 	}
 	
+	public String getServiceName() {
+		return serviceName;
+	}
+
+	public void setServiceName(String serviceName) {
+		this.serviceName = serviceName;
+	}
+
+	public String getRestUrl() {
+		return restUrl;
+	}
+
+	public void setRestUrl(String restUrl) {
+		this.restUrl = restUrl;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public <T> T postForObject(Object request,
             Class<T> responseType,
             Object... uriVariables)
@@ -47,6 +81,7 @@ public class RestConnector {
 		rest.getMessageConverters().add(new StringHttpMessageConverter());
 		return rest.postForObject(this.restUrl+restAPIName, request, responseType);
 	}
+	
 	
 	
 	/**
