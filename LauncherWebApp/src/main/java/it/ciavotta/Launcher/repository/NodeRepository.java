@@ -11,6 +11,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface NodeRepository extends CrudRepository<Node, String> {
 
-@Query("SELECT n FROM Node n WHERE n.nodeId = :NODEID ORDER BY n.id")
+@Query("SELECT n FROM Node n WHERE n.nodeId <> :NODEID ORDER BY n.id")
 public List<Node> findAllButThisNodeId(@Param("NODEID") String nodeId);
 }

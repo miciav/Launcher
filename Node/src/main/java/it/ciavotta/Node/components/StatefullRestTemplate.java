@@ -9,6 +9,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.springframework.web.client.RestTemplate;
 
+@SuppressWarnings("deprecation")
 public class StatefullRestTemplate extends RestTemplate
 {
     private final HttpClient httpClient;
@@ -16,7 +17,8 @@ public class StatefullRestTemplate extends RestTemplate
     private final HttpContext httpContext;
     private final StatefullHttpComponentsClientHttpRequestFactory statefullHttpComponentsClientHttpRequestFactory;
 
-    public StatefullRestTemplate()
+    @SuppressWarnings("deprecation")
+	public StatefullRestTemplate()
     {
         super();
         httpClient = new DefaultHttpClient();

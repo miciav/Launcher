@@ -59,6 +59,7 @@ public class NodeConnectionController {
 			return serverStatus;
 	    }
 	
+	@RequestMapping(value ="/nodelist", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody NodeInformation[] nodeList(@RequestBody NodeInformation nodeInfo){
 		
 		
@@ -66,13 +67,27 @@ public class NodeConnectionController {
 		List<Node> list  = repository.findAllButThisNodeId(node.getNodeId());
 		
 		
-		NodeInformation[] listNodes = (NodeInformation[]) list.toArray();
-		
-		
+		NodeInformation[] listNodes = new NodeInformation[list.size()]; 
+				
+		for(int i = 0; i < list.size(); i++) listNodes[i] = convertNode(list.get(i));
 		
 		return listNodes;
 		
 		
+	}
+	
+	private NodeInformation convertNode(Node node){
+		
+		NodeInformation nodeInfo = new NodeInformation();
+		nodeInfo.setIpAddress(node.getNodeIP());
+		nodeInfo.setOs(node.getOperatingSystem());
+		nodeInfo.setOsArch(node.getArchitecture());
+		nodeInfo.setPort(node.getPort());
+		nodeInfo.setId(node.getId());
+		nodeInfo.setOsVersion(node.getOsVersion());
+		nodeInfo.setNodeID(node.getNodeId());
+		
+		return nodeInfo;
 	}
 	
 	private Node convertNodeInfo(NodeInformation nodeInfo){

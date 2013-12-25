@@ -2,6 +2,7 @@ package it.ciavotta.Node.components;
 
 import java.net.URI;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -13,14 +14,51 @@ import com.google.common.base.Strings;
 @Component
 public class RestClient
 {
-    private String host = "localhost";
+	@Value("${LauncherServer.address}")
+    private String hostAddress;
+	
+	@Value("${LauncherServer.port}")
     private String port = "8080";
+	
+	@Value("${LauncherServer.name}")
     private String applicationPath;
-    private String apiPath = "api";
+	
+    public String getHostAddress() {
+		return hostAddress;
+	}
+
+	public void setHostAddress(String hostAddress) {
+		this.hostAddress = hostAddress;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	private String apiPath = "api";
     private String loginPath = "j_spring_security_check";
     private String logoutPath = "logout";
     private final String usernameInputFieldName = "j_username";
     private final String passwordInputFieldName = "j_password";
+    
+    @Value("${LauncherServer.login}")
+    private String username;
+    
+    @Value("${LauncherServer.login}")
+    private String password;
+    
     private final StatefullRestTemplate template = new StatefullRestTemplate();
 
     /**
@@ -40,6 +78,11 @@ public class RestClient
         form.add(passwordInputFieldName, password);
         URI location = this.template.postForLocation(loginUrl(), form);
         return location.toString();
+    }
+    
+    public String login(){
+    	
+    	return login(this.username, this.password);
     }
 
     /**
@@ -69,7 +112,7 @@ public class RestClient
 
     public String serverUrl()
     {
-        return "http://" + host + ":" + port;
+        return "http://" + hostAddress + ":" + port;
     }
 
     public String applicationUrl()
@@ -99,12 +142,12 @@ public class RestClient
 
     public String getHost()
     {
-        return host;
+        return hostAddress;
     }
 
     public void setHost(String host)
     {
-        this.host = host;
+        this.hostAddress = host;
     }
 
     public String getPort()

@@ -12,6 +12,7 @@
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:security="http://www.springframework.org/schema/security"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="
        		http://www.springframework.org/schema/mvc
        		http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
@@ -33,6 +34,8 @@
             http://www.springframework.org/schema/jms/spring-jms-2.5.xsd
 			http://www.springframework.org/schema/data/jpa
     		http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+    		http://www.springframework.org/schema/task
+ 			http://www.springframework.org/schema/task/spring-task-3.0.xsd
     		http://www.springframework.org/schema/security 
     		http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
@@ -42,7 +45,8 @@
   <context:annotation-config />
   <context:component-scan base-package="it.ciavotta.Launcher.*" />
   <tx:annotation-driven />
-
+  <task:annotation-driven/>	
+  
   <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
       <property name="dataSource" ref="dataSource" />
       <property name="packagesToScan" value="it.ciavotta.Launcher.domain" />
