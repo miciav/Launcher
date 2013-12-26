@@ -1,5 +1,7 @@
 package it.ciavotta.Launcher.domain;
 
+import it.ciavotta.Launcher.messages.NodeInformation;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -32,13 +34,9 @@ public class Node {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-
 	@NaturalId
-//	@Column(nullable = false)
 	private String nodeIP;
 	@NaturalId
-//	@Column(nullable = false)
 	private String port;
 	
 	private String operatingSystem;
@@ -47,6 +45,24 @@ public class Node {
 	
 	private String osVersion;
 
+	public static Node fromNodeInformation(NodeInformation nodeInfo){
+		Node node = new Node();
+		node.setNodeIP(nodeInfo.getIpAddress());
+		node.setOperatingSystem(nodeInfo.getOs());
+		node.setArchitecture(nodeInfo.getOsArch());
+		node.setPort(nodeInfo.getPort());
+		node.setId(nodeInfo.getId());
+		node.setOsVersion(nodeInfo.getOsVersion());
+		node.setNodeId(nodeInfo.getNodeID());
+		
+		if (nodeInfo.getState().equals("OK")) {
+			node.setState(NodeState.OK);
+		}
+		else if (nodeInfo.getState().equals("ERROR")) {
+			node.setState(NodeState.ERROR);
+		}
+		return node;
+	}
 	
 	@PrePersist
 	private void createId(){

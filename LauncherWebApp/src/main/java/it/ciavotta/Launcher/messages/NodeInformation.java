@@ -1,5 +1,8 @@
 package it.ciavotta.Launcher.messages;
 
+import it.ciavotta.Launcher.domain.Node;
+import it.ciavotta.Launcher.domain.NodeState;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,6 +23,26 @@ public class NodeInformation {
 	private String osVersion;
 	
 	private String nodeID;
+	
+	public static NodeInformation fromNode(Node node){
+		NodeInformation nodeInfo = new NodeInformation();
+		nodeInfo.setIpAddress(node.getNodeIP());
+		nodeInfo.setOs(node.getOperatingSystem());
+		nodeInfo.setOsArch(node.getArchitecture());
+		nodeInfo.setPort(node.getPort());
+		nodeInfo.setId(node.getId());
+		nodeInfo.setOsVersion(node.getOsVersion());
+		nodeInfo.setNodeID(node.getNodeId());
+		if (node.getState().equals(NodeState.OK)) {
+			nodeInfo.setState("OK");
+		} else if (node.getState().equals(NodeState.ERROR)){
+			nodeInfo.setState("ERROR");
+		}else{
+			System.out.println("conversion error");
+		}	
+		
+		return nodeInfo;
+	}
 	
 	/**
 	 * @return the ipAddress

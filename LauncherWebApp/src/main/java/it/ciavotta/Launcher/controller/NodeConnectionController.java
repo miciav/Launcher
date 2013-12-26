@@ -37,7 +37,7 @@ public class NodeConnectionController {
 	@RequestMapping(value ="/connect", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody ServerStatus connect(@RequestBody NodeInformation nodeInfo){
 		
-		Node node = convertNodeInfo(nodeInfo);
+		Node node = Node.fromNodeInformation(nodeInfo);
 			try {
 				if (!repository.exists(node.getId())){	
 					node.setNodeId( UUID.randomUUID().toString()); // adding connection id
@@ -63,51 +63,19 @@ public class NodeConnectionController {
 	public @ResponseBody NodeInformation[] nodeList(@RequestBody NodeInformation nodeInfo){
 		
 		
-		Node node = convertNodeInfo(nodeInfo);
+		Node node = Node.fromNodeInformation(nodeInfo);
 		List<Node> list  = repository.findAllButThisNodeId(node.getNodeId());
 		
 		
 		NodeInformation[] listNodes = new NodeInformation[list.size()]; 
 				
-		for(int i = 0; i < list.size(); i++) listNodes[i] = convertNode(list.get(i));
+		for(int i = 0; i < list.size(); i++) listNodes[i] = NodeInformation.fromNode(list.get(i));
 		
 		return listNodes;
 		
-		
 	}
 	
-	private NodeInformation convertNode(Node node){
-		
-		NodeInformation nodeInfo = new NodeInformation();
-		nodeInfo.setIpAddress(node.getNodeIP());
-		nodeInfo.setOs(node.getOperatingSystem());
-		nodeInfo.setOsArch(node.getArchitecture());
-		nodeInfo.setPort(node.getPort());
-		nodeInfo.setId(node.getId());
-		nodeInfo.setOsVersion(node.getOsVersion());
-		nodeInfo.setNodeID(node.getNodeId());
-		
-		return nodeInfo;
-	}
 	
-	private Node convertNodeInfo(NodeInformation nodeInfo){
-		Node node = new Node();
-		node.setNodeIP(nodeInfo.getIpAddress());
-		node.setOperatingSystem(nodeInfo.getOs());
-		node.setArchitecture(nodeInfo.getOsArch());
-		node.setPort(nodeInfo.getPort());
-		node.setId(nodeInfo.getId());
-		node.setOsVersion(nodeInfo.getOsVersion());
-		node.setNodeId(nodeInfo.getNodeID());
-		
-		if (nodeInfo.getState().equals("OK")) {
-			node.setState(NodeState.OK);
-		}
-		else if (nodeInfo.getState().equals("ERROR")) {
-			node.setState(NodeState.ERROR);
-		}
-		
-		return node;
-	}
+
 	
 }

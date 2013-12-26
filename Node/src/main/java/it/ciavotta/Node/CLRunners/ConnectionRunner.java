@@ -34,19 +34,13 @@ public class ConnectionRunner implements CommandLineRunner {
 				//NodeInformation[] listaNodi	= conn.postForObject(nodeInfo, NodeInformation[].class);
 				System.out.println(listaNodi.length);	
 			}
-		
-			
-
-			
-			
-			
+				
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 
 	}
  
-	@Scheduled(fixedDelay= 10000)
 	public boolean nodeConnection(){
 		
 		System.out.println("nodeconnection ");

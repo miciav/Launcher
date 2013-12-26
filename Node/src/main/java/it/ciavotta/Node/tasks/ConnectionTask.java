@@ -23,10 +23,10 @@ public class ConnectionTask {
 		System.out.println(prova);
 	}
 	
-	@Scheduled(fixedDelay = 600000) // ten minutes
+	@Scheduled(fixedDelay = 5000) // ten minutes
 	public void nodeConnection(){
 		
-		System.out.println("nodeconnection ");
+		System.out.println("NODE: nodeconnection ");
 		restClient.setApiPath("Node");
 		
 		try {
@@ -35,13 +35,14 @@ public class ConnectionTask {
 		
 		if (status !=null && status.getMessage().equals("Connected") && status.getConnectionId() != null) {
 
+			System.out.println("NODE: connected! ");
 				nodeInfo.setNodeID(status.getConnectionId());
 		}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 
 			nodeInfo.setState("Error");
-			System.out.println("not connected! ");
+			System.out.println("NODE: not connected! ");
 		} 
 		
 		
