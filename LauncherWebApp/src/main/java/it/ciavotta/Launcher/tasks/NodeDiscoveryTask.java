@@ -29,14 +29,14 @@ public class NodeDiscoveryTask {
 	public void updateNodes(){
 		System.out.println("LAUNCHER: connecting to node");
 		Iterable<Node> nodeList = nodeRepository.findAll();
-		restClient.setApplicationPath("Node");
+//		restClient.setApplicationPath("Node");
 		restClient.setApiPath("Launcher");
 		serverStatus.setMessage("Connected");
 		for (Node node : nodeList) {
 			restClient.setHostAddress(node.getNodeIP());
 			restClient.setPort(node.getPort());
 			try {
-				restClient.login("NodeAdmin", "NodeAdmin");
+				restClient.login("Launcher", "Launcher");
 			} catch (Exception e1) {
 
 				System.out.println("LAUNCHER: logging error");

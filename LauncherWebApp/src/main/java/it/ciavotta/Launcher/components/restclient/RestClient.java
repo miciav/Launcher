@@ -18,7 +18,7 @@ public class RestClient
 	
 	private String port = "8080";
 	
-    private String applicationPath = "Node";
+    private String applicationPath = "";
 	
     public String getHostAddress() {
 		return hostAddress;

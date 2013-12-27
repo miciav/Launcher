@@ -30,6 +30,14 @@ public class ConnectionTask {
 		restClient.setApiPath("Node");
 		
 		try {
+			restClient.logout();
+			restClient.login("admin", "admin");
+		} catch (Exception e1) {
+			nodeInfo.setState("Error");
+			System.out.println("NODE: not connected! ");
+		}
+		
+		try {
 			ServerStatus status = restClient.template().postForObject(restClient.apiUrl("connect"), nodeInfo, ServerStatus.class);
 		
 		

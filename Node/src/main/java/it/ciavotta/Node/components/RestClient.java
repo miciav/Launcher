@@ -49,7 +49,7 @@ public class RestClient
 
 	private String apiPath = "api";
     private String loginPath = "j_spring_security_check";
-    private String logoutPath = "logout";
+    private String logoutPath = "j_spring_security_logout";
     private final String usernameInputFieldName = "j_username";
     private final String passwordInputFieldName = "j_password";
     
